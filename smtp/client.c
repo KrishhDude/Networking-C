@@ -15,19 +15,25 @@ int main(int argc,char* argv[])
      char mail_f[50],mail_to[50],msg[20],c;
      int t=0;
      socklen_t l=sizeof(server);
+
      if(argc!=3)
-     printf("Input format not correct");
+     	printf("Input format not correct");
+
      int sockfd=socket(AF_INET,SOCK_DGRAM,0);
+
      if(sockfd==-1)
-     printf("Error in socket();");
+     	printf("Error in socket();");
+
      server.sin_family=AF_INET;
      server.sin_addr.s_addr=INADDR_ANY;
      server.sin_port=htons(atoi(argv[2]));
      client.sin_family=AF_INET;
      client.sin_addr.s_addr=INADDR_ANY;
      client.sin_port=htons(atoi(argv[2]));
+
      printf("Sending hi to server");
      sleep(3);
+
      sendto(sockfd,str,sizeof(str),0,(struct sockaddr*)&server,sizeof(server));
      recvfrom(sockfd,str,sizeof(str),0,(struct sockaddr *)&server,&l);
 
@@ -58,13 +64,14 @@ int main(int argc,char* argv[])
           msg[t++]=c;
      }
      if(sendto(sockfd,msg,sizeof(msg),0,(struct sockaddr *)&server,sizeof(server))<0)
-     printf("Error in sendto");
+     	printf("Error in sendto");
      sleep(3);
+
      printf("\nSending QUIT to server");
      strcpy(str,"QUIT");
 
      if(strncmp(str,"221",3))
-     printf("\nOk not received from server");
+    	 printf("\nOk not received from server");
      printf("\nServer has send GOODBYE.....Closing conn\n");
      printf("\n Bye");
      close(sockfd);

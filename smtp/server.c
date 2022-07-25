@@ -28,6 +28,7 @@ int main(int argc,char* argv[])
 
      bind(sockfd,(struct sockaddr *)&server,sizeof(server));
      socklen_t client_len=sizeof(client);
+	 
      printf("server waiting......");
      sleep(3);
 

@@ -20,8 +20,7 @@ int main(){
 		exit(0);
 	}
 	else
-	printf("Socket successfully created..\n");
-	
+	printf("Socket successfully created..\n");	
 	bzero(&serv_addr, sizeof(serv_addr));
 	serv_addr.sin_family=AF_INET;
 	serv_addr.sin_addr.s_addr=inet_addr("127.0.0.1");
@@ -34,8 +33,6 @@ int main(){
 	}
 	else
 	printf("connected to the server..\n");
-	
-	
 	int n,c=0;
 	double d;
 	printf("Enter number of frames to be sent:");
@@ -49,7 +46,6 @@ int main(){
 		s[i]='1';
 	}
 	write(sockfd,s,sizeof(s));
-	
 	i=0;
 	int ms,max=0;
 	while(i<n){
@@ -73,8 +69,7 @@ int main(){
 				  c=1;
 				  break;
 			}
-		}
-	
+		}	
 		if(c==1){
 			printf("acknowledgement received from server:%s\n",buff);
 			c=0;
@@ -84,10 +79,8 @@ int main(){
 			printf("acknowledgement not received from server so frame resent\n");
 			max=10; 
 			goto label;
-		}
-	
+		}	
 	}
 	close(sockfd);
 	return 0;
 }
-	

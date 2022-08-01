@@ -10,7 +10,7 @@ int main()
 	struct sockaddr_storage serverStorage;
 	socklen_t addr_size;
 	
-	welcomeSocket = socket(PF_INET,SOCK_STREAM,0);
+	welcomeSocket = socket(PF_INET,SOCK_DGRAM,0);
 	serverAddr.sin_family = AF_INET;
 	serverAddr.sin_port = htons(7891);
 	serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
@@ -26,7 +26,7 @@ int main()
 	addr_size = sizeof(serverStorage);
 	newSocket = accept(welcomeSocket,(struct sockaddr *)&serverStorage,&addr_size);
 	strcpy(buffer, "Hello World");
-    send(newSocket,buffer,13,0);
+    sendto(newSocket,buffer,13,0);
 
 	return 0;
 }
